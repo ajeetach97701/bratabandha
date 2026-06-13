@@ -1,9 +1,13 @@
 /* Global Reset & Theme Variables */
 :root {
-    --primary-color: #7A3B2E;    /* Deep Maroon from the image */
-    --secondary-color: #A06A42;  /* Muted Gold/Brown */
-    --bg-color: #FFFDF9;         /* Off-white/Cream background */
-    --text-color: #4A3E3D;       /* Soft dark brown for readability */
+    --primary-color: #7A3B2E;
+    --secondary-color: #B5733B;
+    --accent-color: #E6B97D;
+    --bg-color: #FFF7EE;
+    --surface-color: rgba(255, 255, 255, 0.96);
+    --text-color: #4F3A35;
+    --muted-color: #7A5D4F;
+    --shadow-color: rgba(122, 59, 46, 0.16);
 }
 
 * {
@@ -12,119 +16,221 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Poppins', 'Arial', sans-serif;
-    background-color: #F5EFEB;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background: radial-gradient(circle at top left, #FFF3E8 0%, #F7E9DF 40%, #E5D0C2 100%);
     color: var(--text-color);
-    display: flex;
-    justify-center: center;
-    align-items: center;
     min-height: 100vh;
-    padding: 20px;
-}
-
-/* Card Container */
-.invitation-container {
-    background-color: var(--bg-color);
-    max-width: 550px;
-    width: 100%;
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
     overflow: hidden;
-    border: 1px solid #EFE6DD;
 }
 
-/* Watermark Mandala Background effect */
-.mandala-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 380px;
-    height: 380px;
-    background-image: url('https://images.unsplash.com/photo-1617103996702-96ff29b1c467?q=80&w=1000&auto=format&fit=crop'); /* Placeholder geometric/mandala background */
-    background-size: contain;
+.page-background {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.9), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255, 214, 179, 0.5), transparent 25%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1522098543979-ffc7f79e3f16?auto=format&fit=crop&w=1200&q=60');
+    background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.03; /* Kept very subtle like the image */
+    opacity: 0.12;
+    filter: blur(6px);
+    z-index: -3;
+}
+
+.invitation-container {
+    position: relative;
+    width: min(650px, 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 237, 0.98));
+    padding: 44px 36px 32px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 30px 80px rgba(99, 59, 43, 0.18);
+    overflow: hidden;
+    text-align: center;
+    animation: floatCard 1.4s ease-out both;
+}
+
+.invitation-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at top right, rgba(255, 184, 121, 0.18), transparent 36%),
+        radial-gradient(circle at bottom left, rgba(190, 143, 103, 0.12), transparent 32%);
     pointer-events: none;
 }
 
-/* Typography & Section Styles */
+.mandala-bg {
+    position: absolute;
+    inset: -20px auto auto 50%;
+    width: 420px;
+    height: 420px;
+    transform: translateX(-50%);
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 55%),
+        repeating-conic-gradient(rgba(181, 124, 82, 0.12) 0 12deg, transparent 12deg 24deg);
+    opacity: 0.3;
+    filter: blur(0.4px);
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(230, 176, 124, 0.8) 45%, transparent 60%);
+    box-shadow: 0 0 18px rgba(255, 215, 175, 0.65);
+    opacity: 0;
+    animation: sparkle 2.2s ease-in-out infinite;
+}
+
+.sparkle-1 { top: 18%; left: 15%; animation-delay: 0s; }
+.sparkle-2 { top: 36%; right: 16%; animation-delay: 0.6s; }
+.sparkle-3 { bottom: 14%; left: 22%; animation-delay: 1.1s; }
+
+.header-section {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
 .om-symbol {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--secondary-color);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 1s ease forwards;
 }
 
 .ganesh-mantra {
     color: var(--secondary-color);
     font-size: 0.95rem;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
+    letter-spacing: 1.4px;
+    opacity: 0.88;
+    margin-bottom: 10px;
+    animation: fadeInUp 1.1s ease forwards;
 }
 
 .main-title {
     font-family: 'Yatra One', cursive, sans-serif;
     color: var(--primary-color);
-    font-size: 2.2rem;
-    margin-bottom: 5px;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    line-height: 1.05;
+    margin-bottom: 6px;
+    animation: fadeInUp 1.2s ease forwards;
 }
 
 .sub-title {
-    color: var(--secondary-color);
-    font-size: 1.1rem;
+    color: var(--muted-color);
+    font-size: 1.05rem;
     font-style: italic;
-    margin-bottom: 15px;
+    letter-spacing: 0.45px;
+    opacity: 0.9;
+    animation: fadeInUp 1.3s ease forwards;
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
 }
 
 .divider {
     border: 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, #D9C5B2, transparent);
-    margin: 25px auto;
-    width: 80%;
+    margin: 26px auto;
+    width: 76%;
+    background: linear-gradient(to right, transparent, rgba(181, 124, 82, 0.4), transparent);
+}
+
+.invitation-body,
+.family-section,
+.muhurt-section,
+.footer-section {
+    margin-top: 14px;
 }
 
 .welcome-text {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 25px;
+    font-size: 1.03rem;
+    line-height: 1.9;
+    max-width: 86%;
+    margin: 0 auto 24px;
+    color: var(--text-color);
+    animation: fadeInUp 1.4s ease forwards;
 }
 
-/* Main Highlighted Name */
 .name-badge {
-    background-color: #FDF1EB;
-    border: 1px dashed #E2C7B7;
-    padding: 12px 30px;
-    display: inline-block;
-    border-radius: 4px;
-    margin: 10px 0;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 28px;
+    border-radius: 18px;
+    background: rgba(255, 246, 236, 0.95);
+    border: 1px solid rgba(182, 133, 93, 0.22);
+    box-shadow: 0 18px 35px rgba(164, 105, 66, 0.12);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    animation: floatBadge 1.6s ease infinite alternate;
+}
+
+.name-badge:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 24px 45px rgba(164, 105, 66, 0.18);
 }
 
 .guest-name {
     color: var(--primary-color);
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
 }
 
-/* Details Styles */
+.title-caption {
+    margin-top: 8px;
+    color: var(--muted-color);
+    font-size: 0.92rem;
+    letter-spacing: 0.4px;
+}
+
 .section-heading {
     color: var(--secondary-color);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    letter-spacing: 1.7px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
-.family-details p {
-    font-size: 1.05rem;
-    margin: 6px 0;
-    line-height: 1.6;
+.family-details,
+.date-box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.family-details p,
+.date-box p {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.7;
+    opacity: 0.96;
 }
 
 .family-details strong {
@@ -132,48 +238,93 @@ body {
     font-weight: 600;
 }
 
-/* Muhurt Section */
 .nepali-date {
     color: var(--primary-color);
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 .samvat-details {
-    font-size: 0.95rem;
+    font-size: 0.96rem;
+    color: var(--muted-color);
     font-style: italic;
-    color: var(--secondary-color);
 }
 
-/* Footer elements */
+.footer-section {
+    margin-top: 28px;
+}
+
 .closing-text {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-color);
+    margin-bottom: 16px;
 }
 
 .decorative-dots {
     color: var(--secondary-color);
-    font-size: 0.8rem;
-    letter-spacing: 8px;
+    font-size: 0.9rem;
+    letter-spacing: 10px;
 }
 
-/* Mobile Responsive Adjustments */
-@media (max-width: 480px) {
+@keyframes floatCard {
+    from { transform: translateY(30px) scale(0.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.25); }
+}
+
+@keyframes floatBadge {
+    from { transform: translateY(0); }
+    to { transform: translateY(-6px); }
+}
+
+@media (max-width: 640px) {
     body {
-        padding: 10px;
+        padding: 16px;
     }
     .invitation-container {
-        padding: 30px 15px;
+        padding: 32px 22px 24px;
+    }
+    .welcome-text,
+    .family-details p,
+    .date-box p,
+    .closing-text {
+        font-size: 0.98rem;
     }
     .main-title {
-        font-size: 1.8rem;
+        font-size: 2.4rem;
+    }
+    .name-badge {
+        width: 100%;
+        padding: 18px 24px;
+    }
+}
+
+@media (max-width: 420px) {
+    .invitation-container {
+        padding: 26px 18px 22px;
+        border-radius: 26px;
+    }
+    .main-title {
+        font-size: 2rem;
     }
     .guest-name {
-        font-size: 1.5rem;
+        font-size: 1.65rem;
     }
     .nepali-date {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+    }
+    .section-heading {
+        font-size: 0.82rem;
     }
 }
