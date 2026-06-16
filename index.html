@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ne">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,8 +8,10 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet" />
 </head>
+
 <body>
     <div class="page-background"></div>
     <div class="invitation-container">
@@ -27,8 +30,7 @@
         <div class="card-content">
             <section class="invitation-body" data-reveal>
                 <p class="welcome-text">
-                    हार्दिक हर्ष र उल्लासका साथ हामी<br />
-                    हाम्रा प्रिय पुत्रको ब्रतबन्ध संस्कारको<br />
+                    निर्मल कुमार आचार्य र अनु आचार्यको प्रिय सुपुत्रको ब्रतबन्ध संस्कारको<br />
                     पावन अवसरमा हजुरहरुलाई सादर निमन्त्रणा गर्दछौँ ।
                 </p>
                 <div class="name-badge" data-reveal>
@@ -50,7 +52,7 @@
                 <h3 class="section-heading">शुभ मुहूर्त</h3><br>
                 <div class="date-box">
                     <p class="nepali-date">असार १०, २०८३</p>
-                    <p class="samvat-details">विक्रम सम्वत् — बिहान शुभ बेलामा</p>
+                    <p class="samvat-details">भिक्षा दिने सहित: बिहान ११:४५ बजे</p>
                 </div>
             </section>
         </div>
@@ -64,17 +66,17 @@
     </div>
 
     <script>
-        (function() {
+        (function () {
             var revealElements = document.querySelectorAll('[data-reveal]');
             if (!revealElements.length) return;
 
-            revealElements.forEach(function(el) {
+            revealElements.forEach(function (el) {
                 el.classList.add('reveal');
             });
 
             if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('visible');
                         }
@@ -84,15 +86,16 @@
                     rootMargin: '0px 0px -40px 0px'
                 });
 
-                revealElements.forEach(function(el) {
+                revealElements.forEach(function (el) {
                     observer.observe(el);
                 });
             } else {
-                revealElements.forEach(function(el) {
+                revealElements.forEach(function (el) {
                     el.classList.add('visible');
                 });
             }
         })();
     </script>
 </body>
+
 </html>
